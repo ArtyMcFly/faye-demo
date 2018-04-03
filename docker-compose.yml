@@ -1,0 +1,37 @@
+version: '3'
+
+services:
+  traefik:
+    container_name: proxy
+    image: traefik
+    command: --web --docker --docker.domain=faye-demo.docker.localhost --logLevel=DEBUG
+    ports:
+      - "80:80"
+      - "8080:8080"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /dev/null:/traefik.toml
+  faye-client-browser-static-files:
+    build:
+      context: ./client
+    container_name: client-browser-static
+    depends_on:
+      - chat-server
+    image: artymcfly/client-static-content-faye
+    labels:
+      traefik.backend: "static-files"
+      traefik.port: "80"
+      traefik.frontend.rule: "Host:faye-demo.docker.localhost"
+    volumes:
+      - ./client:/usr/share/nginx/html
+  faye-server:
+    build:
+      context: ./server
+    container_name: server
+    image: artymcfly/server-faye
+    labels:
+      traefik.backend: "faye-server"
+      traefik.port: "80"
+      traefik.frontend.rule: "Host:faye-demo.docker.localhost;PathPrefixStrip: /chat"
+    volumes:
+      - ./server:/home

@@ -1,0 +1,76 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <script src="/chat/faye/client.js"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Faye Demo</title>
+        <style>
+            #chat-container div:nth-child(odd){
+                background-color:lightblue;
+            }
+        </style>
+        <script>
+            //initialize faye
+            var client = new Faye.Client('/chat/faye'); 
+            var alias = "Anonymous";
+            
+            function publishMessage(){
+                
+                var text = document.getElementById("text").value;
+                
+                //add some logic for subscribing to a topic
+                client.publish("/faye-demo",{
+                    extra: {alias: alias},
+                    message: text
+                });
+                
+                document.getElementById("text").value = "";
+            }
+            
+            function subscribe(){
+                //subscribe client to a given channel "faye-demo"
+                //handle displaying published data here
+                client.subscribe("/faye-demo" , function(data){
+                    console.log("Message received: ");
+                    console.log(data);
+                    var msg = document.createElement("div");
+                    msg.innerHTML = data.extra.alias + ": " + data.message;
+                    document.getElementById("chat-container").appendChild(msg);
+                })
+                document.getElementById("alias").style.display="none";
+                document.getElementById("alias-label").style.display="none";
+                document.getElementById("subscribe").style.display="none";
+                
+                document.getElementById("text").style.display="unset";
+                document.getElementById("send").style.display="unset";
+                
+                //add some logic for subscribing to a topic
+                client.publish("/faye-demo",{
+                    extra: {alias: alias},
+                    message: " joined the room!"
+                });
+            }
+            
+            function checkForEnterKey(event){
+                event = event || window.event;
+                if(event.key === 'Enter'){
+                    publishMessage();
+                }
+            }
+            
+            function setAlias(newAlias){
+                alias = newAlias;
+            }
+        </script>
+    </head>
+    <body>
+        <div id="chat-container"></div>
+        <div id="chat-input">
+            <label id="alias-label" for="alias">Alias: </label>
+            <input id="alias" name="alias" type="text" value="Anonymous" onchange="setAlias(this.value)">
+            <input id="subscribe" type="button" value="Subscribe" onclick="subscribe()">
+            <input id="text" type="text" value="" style="display:none;" onkeydown="checkForEnterKey()">
+            <input id="send" type="button" value="Send" onclick="publishMessage()" style="display:none;">
+        </div>
+    </body>
+</html>
