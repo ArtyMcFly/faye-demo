@@ -16,10 +16,10 @@ services:
       context: ./client
     container_name: client-browser-static
     depends_on:
-      - chat-server
-    image: artymcfly/client-static-content-faye
+      - faye-server
+    image: artymcfly/client-static-content-faye:stable
     labels:
-      traefik.backend: "static-files"
+      traefik.backend: "faye-client-browser-static-files"
       traefik.port: "80"
       traefik.frontend.rule: "Host:faye-demo.docker.localhost"
     volumes:
@@ -28,7 +28,7 @@ services:
     build:
       context: ./server
     container_name: server
-    image: artymcfly/server-faye
+    image: artymcfly/server-faye:stable
     labels:
       traefik.backend: "faye-server"
       traefik.port: "80"

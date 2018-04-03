@@ -31,3 +31,30 @@ It's also special because it's super simple to setup and use standalone.
 2. [Yarn](https://yarnpkg.com/lang/en/docs/install/) and/or [NPM](https://www.npmjs.com/get-npm) installed
 3. git installed
 4. Chrome installed (`sub.domain.localhost` doesn't work as expected in all browsers witout doing some DNS spoofing, it works on Chrome though)
+
+## Supplementary Tools
+
+1. [Traefik](https://docs.traefik.io/) Modern HTTP reverse Proxy -- super friendly with Docker
+2. [Alpine Linux](https://alpinelinux.org/about/) -- extremely small OS thats docker and microservice friendly
+3. [Docker Compose](https://docs.docker.com/compose/) -- a docker tool that consolidates many of the one off docker commands
+4. [NGINX](https://www.nginx.com/) -- another proxy, but in this case, used to serve stateless browser files
+
+## Manual Labor
+
+1. Setup Directory/Build Structure
+2. Create a Server code base
+    a. Create Node HTTP Server
+    b. Add Faye extension to HTTP Server
+3. Create Client code base
+    a. Boilerplate the HTML file
+    b. Insert Faye Endpoint for Faye library.js file
+    c. Subscribe to a channel
+    d. Publish to a channel
+    e. Show Subscribed/Published messages in Console
+    f. Add HTML/JS code for text inputs
+    g. Add HTML/JS code for subscribing with an alias
+4. Build & Deploy the docker images
+    a. Build the images
+    b. Show how small the images are
+    c. Push images/Pull on AWS
+    d. Deploy and watch messages roll!
