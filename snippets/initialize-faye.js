@@ -1,0 +1,1 @@
+var client = new Faye.Client('/chat/faye');

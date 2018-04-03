@@ -1,0 +1,1 @@
+var server = http.createServer((request, response) => {}).listen(80, "0.0.0.0");

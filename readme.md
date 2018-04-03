@@ -31,6 +31,7 @@ It's also special because it's super simple to setup and use standalone.
 2. [Yarn](https://yarnpkg.com/lang/en/docs/install/) and/or [NPM](https://www.npmjs.com/get-npm) installed
 3. git installed
 4. Chrome installed (`sub.domain.localhost` doesn't work as expected in all browsers witout doing some DNS spoofing, it works on Chrome though)
+5. Deployment Provisioned (will be using AWS under the hood)
 
 ## Supplementary Tools
 
@@ -43,18 +44,19 @@ It's also special because it's super simple to setup and use standalone.
 
 1. Setup Directory/Build Structure
 2. Create a Server code base
-    a. Create Node HTTP Server
-    b. Add Faye extension to HTTP Server
+    i. Create Node HTTP Server
+    ii. Add Faye extension to HTTP Server
 3. Create Client code base
-    a. Boilerplate the HTML file
-    b. Insert Faye Endpoint for Faye library.js file
-    c. Subscribe to a channel
-    d. Publish to a channel
-    e. Show Subscribed/Published messages in Console
-    f. Add HTML/JS code for text inputs
-    g. Add HTML/JS code for subscribing with an alias
+    i. Boilerplate the HTML file
+    ii. Insert Faye Endpoint for Faye library.js file
+    iii. Initialize Faye
+    iv. Subscribe to a channel
+    v. Publish to a channel
+    vi. Show Subscribed/Published messages in Console
+    vii. Add HTML/JS code for text inputs
+    viii. Add HTML/JS code for subscribing with an alias
 4. Build & Deploy the docker images
-    a. Build the images
-    b. Show how small the images are
-    c. Push images/Pull on AWS
-    d. Deploy and watch messages roll!
+    i. Build the images
+    ii. Show how small the images are
+    iii. Push images/Pull on AWS
+    iv. Deploy and watch messages roll!
