@@ -44,19 +44,19 @@ It's also special because it's super simple to setup and use standalone.
 
 1. Setup Directory/Build Structure
 2. Create a Server code base
-    i. Create Node HTTP Server
-    ii. Add Faye extension to HTTP Server
+    1. Create Node HTTP Server
+    2. Add Faye extension to HTTP Server
 3. Create Client code base
-    i. Boilerplate the HTML file
-    ii. Insert Faye Endpoint for Faye library.js file
-    iii. Initialize Faye
-    iv. Subscribe to a channel
-    v. Publish to a channel
-    vi. Show Subscribed/Published messages in Console
-    vii. Add HTML/JS code for text inputs
-    viii. Add HTML/JS code for subscribing with an alias
+    1. Boilerplate the HTML file
+    2. Insert Faye Endpoint for Faye library.js file
+    3. Initialize Faye
+    4. Subscribe to a channel
+    5. Publish to a channel
+    6. Show Subscribed/Published messages in Console
+    7. Add HTML/JS code for text inputs
+    8. Add HTML/JS code for subscribing with an alias
 4. Build & Deploy the docker images
-    i. Build the images
-    ii. Show how small the images are
-    iii. Push images/Pull on AWS
-    iv. Deploy and watch messages roll!
+    1. Build the images
+    2. Show how small the images are
+    3. Push images/Pull on AWS
+    4. Deploy and watch messages roll!
